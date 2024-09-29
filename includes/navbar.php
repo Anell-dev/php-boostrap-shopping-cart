@@ -25,9 +25,14 @@
         </li>
     </ul> 
     <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-        <i class="bi bi-search search-icon"></i> <!-- Icono de búsqueda -->
-    </div> 
+    <input type="text" class="search-input" placeholder="Search..." > 
+        
+        <i class="bi bi-search search-icon"></i> 
+    </div>
+
+
+
+
   <!--  carrito con contador -->
   <div class="cart-container">
         <button class="cart-button">
