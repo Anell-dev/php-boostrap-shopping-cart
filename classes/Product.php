@@ -69,5 +69,15 @@ class Product {
         }
         return false; // Retorna false si no se encontró el producto
     }
+    public static function searchProducts($query) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $allProducts = isset($_SESSION['products']) ? $_SESSION['products'] : [];
+        // Filtro de búsqueda (ignora mayúsculas/minúsculas)
+        return array_filter($allProducts, function($product) use ($query) {
+            return stripos($product->getName(), $query) !== false;
+        });
+    }
 }
 ?>

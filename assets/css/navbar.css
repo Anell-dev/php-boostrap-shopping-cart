@@ -1,5 +1,4 @@
 
-
 .container__principal-nav { 
     display: flex;
     justify-content: space-between; /* Para alinear logotipo a la izquierda y elementos de búsqueda/carrito a la derecha */
@@ -10,19 +9,19 @@
 
 .container__logotipe {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: bold; 
+    
 }
 
 .container__nav-list {
     display: flex;
     list-style: none;
     gap: 30px;
-    margin: 0;
+    margin: 0; 
 }
 
 .container__nav-items a {
     text-decoration: none;
-    color: #000;
     font-weight: 600;
 }
 
@@ -48,7 +47,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #007bff;
+    color: #2d0d3b;
     cursor: pointer;
 }
 
@@ -74,8 +73,6 @@
     font-size: 24px;
     margin-right: 8px;
 }
-
-
 
 /* Estilo para el contador del carrito */
 .cart-count {

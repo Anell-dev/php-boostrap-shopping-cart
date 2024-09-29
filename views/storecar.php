@@ -21,7 +21,7 @@
     <body>
         <?php require("../includes/navbar.php"); ?> 
         <h1>Edwin Gonzales Dasboard Carrito</h1>
-
+    
         <p>Carrito de compras pa</p>
 
 
@@ -29,7 +29,7 @@
 
 
         <!-- Agregarme los footers------------------------------------------------------------- --> 
-
+      
         <script src="../assets/js/navbar.js"></script>  
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
