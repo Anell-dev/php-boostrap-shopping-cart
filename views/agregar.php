@@ -35,6 +35,7 @@ if (isset($_POST["name"]) && isset($_POST["price"]) && isset($_POST["stock"])) {
 </head>
 
 <body>
+    <?php require("../header.php"); ?>
     <?php require("../includes/navbar.php"); ?>
     <div class="container mt-5">
         <div class="row">

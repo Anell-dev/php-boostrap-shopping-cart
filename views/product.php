@@ -1,8 +1,8 @@
 <?php
+// Autoloader
 spl_autoload_register(function ($class_name) {
     include '../classes/' . $class_name . '.php';
 });
-
 session_start();
 $products = Product::getAllProducts();
 
@@ -13,12 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
 
     if (isset($products[$productIndex])) {
-
         $productId = $products[$productIndex]->getId();
         $success = Product::updateProducts($productId, $name, $price, $stock);
 
         if ($success) {
-            header('Location: product.php');
+            header('Location: product.php'); // Cambia esto a la página donde quieres redirigir
             exit();
         } else {
             echo "Error al actualizar el producto.";
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Índice de producto no válido.";
     }
 }
-
 ?>
 
 <!doctype html>
@@ -44,8 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <?php require("../header.php"); ?>
     <?php require("../includes/navbar.php"); ?>
-    <h1 class="text-center mt-4" style="#2d0d3b">E-Commerce | Shopping Store</h1>
+    <h1 class="text-center mt-4" style="color: #2d0d3b;">E-Commerce | Shopping Store</h1>
     <div class="container mt-4" style="background:  #FAFAFA;">
         <div class="row" style="background:  #FAFAFA;">
             <?php if (count($products) > 0): ?>
@@ -59,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="card-text">Precio: $<?php echo htmlspecialchars($product->getPrice()); ?></p>
                                 <p class="card-text">Stock: <?php echo htmlspecialchars($product->getStock()); ?> unidades</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <!--//! Botón para agregar al carrito -->
-                                    <form action="../views/agregar_al_carrito.php" method="POST" class="me-2">
+                                    <!-- Botón para agregar al carrito -->
+                                    <form action="agregar_al_carrito.php" method="POST" class="me-2">
                                         <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
                                         <button type="submit" class="btn btn-primary">
                                             <i class="bi bi-cart-plus"></i> Carrito
@@ -126,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <?php require("../includes/footer.php"); ?>
+
     <script src="../assets/js/product.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

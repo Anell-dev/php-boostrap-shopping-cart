@@ -24,6 +24,7 @@ $carrito = new Carrito();
 </head>
 
 <body>
+    <?php require("../header.php"); ?>
     <?php require("../includes/navbar.php"); ?>
 
     <div class="container-shopping-cart">
