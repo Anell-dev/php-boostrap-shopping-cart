@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
-* {
-  font-family: "Fredoka", sans-serif;
+body {
+  height: 100vh;
 }
+
 .hero {
   display: flex;
   align-items: center;
@@ -21,6 +21,10 @@
   flex: 1;
   padding: 2rem;
   text-align: center;
+}
+
+.hero-content a {
+  font-size: large;
 }
 
 .hero h1 {
@@ -44,7 +48,9 @@
 
 .container-button {
   display: flex;
+  margin-top: 30px;
   width: 100%;
+  justify-content: center;
 }
 
 .container-button a {
@@ -58,10 +64,8 @@
   border: 1px solid lightblue;
   transition: all 0.7s;
 }
+
 .container-button a:hover {
   color: #fff;
   background: rgba(46, 14, 65, 0.685);
-}
-body {
-  height: 100vh;
 }
