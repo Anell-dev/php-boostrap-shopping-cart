@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-    <title>Listado de Productos</title>
+    <title>E-Commerce | Shopping</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -45,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <?php require("../includes/navbar.php"); ?>
-    <h1 class="text-center mt-4">Listado de Productos</h1>
-    <div class="container mt-4">
-        <div class="row">
+    <h1 class="text-center mt-4" style="#2d0d3b">E-Commerce | Shopping Store</h1>
+    <div class="container mt-4" style="background:  #FAFAFA;">
+        <div class="row" style="background:  #FAFAFA;">
             <?php if (count($products) > 0): ?>
                 <?php foreach (array_keys($products) as $index): ?>
                     <?php $product = $products[$index]; ?>
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-12">
-                    <p class="text-center">No hay productos disponibles.</p>
+                    <p class="text-center">No products available</p>
                 </div>
             <?php endif; ?>
         </div>
