@@ -1,9 +1,18 @@
+<?php 
+
+require("../classes/Product.php");
+session_start(); 
+
+$products = Product::getAllProducts(); 
+
+?>
+
 <?php
-// Autoloader
-spl_autoload_register(function ($class_name) {
-    include '../classes/' . $class_name . '.php';
-});
-session_start();
+// Actualizar 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $products = Product::getAllProducts();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Índice de producto no válido.";
     }
 }
-?>
-
+ ?>
 <!doctype html>
 <html lang="en">
 
@@ -44,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php require("../header.php"); ?>
     <?php require("../includes/navbar.php"); ?>
-    <h1 class="text-center mt-4" style="color: #2d0d3b;">E-Commerce | Shopping Store</h1>
-    <div class="container mt-4" style="background:  #FAFAFA;">
+    <h1 class="text-center mt-4" style="#2d0d3b">E-Commerce | Shopping Store</h1>
+    <div class="container mt-4" style="background:  #FAFAFA;" >
         <div class="row" style="background:  #FAFAFA;">
             <?php if (count($products) > 0): ?>
                 <?php foreach (array_keys($products) as $index): ?>
@@ -84,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 </div>
                                                 <div class="modal-body">
                                                     <form id="editProductForm" method="POST" action="">
-                                                        <input type="hidden" name="productIndex" id="productIndex">
+                                                        <input type="hidden" name="productIndex" id="productIndex"> 
                                                         <div class="mb-3">
                                                             <label for="productName" class="form-label">Nombre del Producto</label>
                                                             <input type="text" class="form-control" id="productName" name="name" required>

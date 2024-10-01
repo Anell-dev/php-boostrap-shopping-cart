@@ -1,3 +1,10 @@
+<?php 
+  if (!isset($_SESSION["carrito"])) {
+    # code...
+    $_SESSION["carrito"] =[];
+  }
+
+?>
 <!doctype html>
 <html lang="es">
 

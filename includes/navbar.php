@@ -1,3 +1,16 @@
+<?php
+$cantidad_productos = 0;
+if (!empty($_SESSION["carrito"])) {
+
+    foreach ($_SESSION['carrito'] as $producto) {
+        if (isset($producto['cantidad'])) {
+            $cantidad_productos += $producto['cantidad'];
+        }
+    }
+} else {
+    $cantidad_productos = 0; 
+}
+?>
 <nav class="container__principal-nav">
     <p class="container__logotipe">
         NEXLINE
@@ -31,7 +44,7 @@
             <button class="cart-button">
                 <i class="bi bi-cart"></i>
                 <span class="cart-count">
-                    0
+                <?php echo  $cantidad_productos?>
                 </span>
             </button>
         </div>
