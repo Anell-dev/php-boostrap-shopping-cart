@@ -1,5 +1,5 @@
 <?php
-
+// session_start();
 if (!isset($_SESSION['carrito'])) {
   $_SESSION['carrito'] = [];
 }
@@ -53,7 +53,7 @@ class Carrito
     return ['total' => $suma_total, 'cantidad' => $cantidad_productos];
   }
 
-  public function obtenerCantidadProductos()
+  public static function obtenerCantidadProductos()
   {
     $cantidad_productos = 0;
     foreach ($_SESSION['carrito'] as $producto) {
