@@ -1,8 +1,8 @@
-<?php 
+<?php
 spl_autoload_register(function ($class_name) {
     include '../classes/' . $class_name . '.php';
 });
-session_start(); 
+session_start();
 
 if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
@@ -20,4 +20,3 @@ if (isset($_POST['productId'])) {
     header("Location: product.php?message=No se encontró el ID del producto.");
     exit();
 }
-?>
