@@ -1,3 +1,7 @@
+* {
+  font-size: small;
+}
+
 .conatiner-up-to-navbar {
   display: flex;
   justify-content: center;
@@ -10,12 +14,25 @@
 
   div {
     display: flex;
+    align-items: center;
     gap: 20px;
+  }
+
+  div > img {
+    height: 25px;
+  }
+
+  div > i:hover {
+    cursor: pointer;
   }
 
   div:first-child {
     gap: 10px;
     margin: 0;
+  }
+
+  div:last-child > p {
+    cursor: pointer;
   }
 
   p {
@@ -28,8 +45,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  gap: 326px;
-  padding-left: 158px;
+  justify-content: space-around;
   background-color: #f8f9fa;
 }
 
@@ -91,7 +107,6 @@
   cursor: pointer;
 }
 
-/* Estilo para el carrito */
 .cart-container {
   position: relative;
 }
@@ -111,7 +126,6 @@
   font-size: 24px;
 }
 
-/* Estilo para el contador del carrito */
 .cart-count {
   position: absolute;
   top: -8px;

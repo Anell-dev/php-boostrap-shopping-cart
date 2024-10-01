@@ -1,16 +1,16 @@
 <?php
-// Autoloader
 spl_autoload_register(function ($class_name) {
     include '../classes/' . $class_name . '.php';
 });
+
 session_start();
-$products = Product::getAllProducts();  
+$products = Product::getAllProducts();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productIndex = $_POST['productIndex'];
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $stock = $_POST['stock']; 
+    $stock = $_POST['stock'];
 
     if (isset($products[$productIndex])) {
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = Product::updateProducts($productId, $name, $price, $stock);
 
         if ($success) {
-            header('Location: product.php'); // Cambia esto a la página donde quieres redirigir
+            header('Location: product.php');
             exit();
         } else {
             echo "Error al actualizar el producto.";
@@ -28,19 +28,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
 ?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Listado de Productos</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/navbar.css"> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">  
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
+
 <body>
     <?php require("../includes/navbar.php"); ?>
     <h1 class="text-center mt-4">Listado de Productos</h1>
@@ -57,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="card-text">Precio: $<?php echo htmlspecialchars($product->getPrice()); ?></p>
                                 <p class="card-text">Stock: <?php echo htmlspecialchars($product->getStock()); ?> unidades</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <!-- Botón para agregar al carrito -->
-                                    <form action="" method="POST" class="me-2">
+                                    <!--//! Botón para agregar al carrito -->
+                                    <form action="../views/agregar_al_carrito.php" method="POST" class="me-2">
                                         <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="bi bi-cart-plus"></i> Carrito 
+                                            <i class="bi bi-cart-plus"></i> Carrito
                                         </button>
                                     </form>
 
@@ -69,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <form class="me-2">
                                         <input type="hidden" name="productIndex" value="<?php echo $index; ?>" />
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal" onclick="openEditModal(<?php echo $index; ?>, '<?php echo htmlspecialchars($product->getName()); ?>', <?php echo htmlspecialchars($product->getPrice()); ?>, <?php echo htmlspecialchars($product->getStock()); ?>)">
-                                            <i class="bi bi-pencil-square"></i> 
+                                            <i class="bi bi-pencil-square"></i>
                                         </button>
                                     </form>
 
@@ -103,13 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
                                     </div>
 
-                                      <!-- Botón para eliminar -->
-                                <form action="../views/eliminar.php" method="POST" style="display:inline;">
-                                      <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
-                                      <button type="submit" class="btn btn-danger">
-                                            <i class="bi bi-trash"></i> 
-                                      </button>
-                                </form>
+                                    <!-- Botón para eliminar -->
+                                    <form action="../views/eliminar.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -121,12 +123,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
         </div>
-    </div> 
+    </div>
 
-<!-- Agregarme los footers------------------------------------------------------------- -->
-
-    <script src="../assets/js/product.js"></script>            
-    <script src="../assets/js/navbar.js"></script>  
+    <?php require("../includes/footer.php"); ?>
+    <script src="../assets/js/product.js"></script>
+    <script src="../assets/js/navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

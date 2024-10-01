@@ -1,47 +1,126 @@
-* {
-  font-size: small;
-}
-
 .container-shopping-cart {
-  /* display: flex; */
-  padding: 80px;
-
-  p {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.container-header-shopping-cart {
   display: flex;
-  justify-content: space-around;
-  font-weight: bold;
+  width: 85%;
+  margin: auto;
+  margin-top: 90px;
+  gap: 30px;
 }
 
-hr {
-  color: rgb(28, 28, 28);
+.shopping-cart {
+  width: 90%;
 }
 
-.container-product-details {
-  display: flex;
-  /* justify-content: space-around; */
-  gap: 200px;
-  img {
-    width: 250px;
-  }
+h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f8f8;
+}
+
+td {
+  border-left: none;
+  border-right: none;
 }
 
 .container-img-and-details {
   display: flex;
-  gap: 20px;
+  align-items: center;
 }
 
-.container-quantity {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
+.all-products-details {
+  margin-left: 15px;
+  width: 70%;
+
+  p:first-child {
+    font-weight: bold;
+  }
 }
-.container-add-amount-remove {
+
+.product-image {
+  width: 200px;
+  height: auto;
+}
+
+.quantity input {
+  width: 46px;
+  text-align: center;
+}
+
+.remove-link {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-link,
+.save-for-later,
+.continue-shopping,
+.promotional-code {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.remove-link:hover,
+.edit-link:hover,
+.save-for-later:hover,
+.continue-shopping:hover,
+.promotional-code:hover {
+  text-decoration: underline;
+}
+
+.total-price {
+  font-weight: bold;
+}
+
+.order-summary {
+  width: 25%;
+  max-height: 350px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h3 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.order-summary p {
   display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.order-summary select,
+.order-summary button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.order-summary button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.order-summary button:hover {
+  background-color: #333;
 }

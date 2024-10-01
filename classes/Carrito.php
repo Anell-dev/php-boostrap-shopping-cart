@@ -6,24 +6,13 @@ if (!isset($_SESSION['carrito'])) {
 
 class Carrito
 {
-  public $productos = [];
-  public $suma_total = 0;
-  public $cantidad_productos_en_el_carro = 0;
-
-  public function __construct(array $productos = [], float $suma_total = 0, int $cantidad_productos_en_el_carro = 0)
-  {
-    $this->productos = $productos;
-    $this->suma_total = $suma_total;
-    $this->cantidad_productos_en_el_carro = $cantidad_productos_en_el_carro;
-  }
-
   public function agregarProducto($id, $nombre, $precio, $cantidad)
   {
-    if (isset($this->productos[$id])) {
-      $this->productos[$id]['cantidad'] += $cantidad;
-      $this->productos[$id]['total'] = $this->productos[$id]['precio'] * $this->productos[$id]['cantidad'];
+    if (isset($_SESSION['carrito'][$id])) {
+      $_SESSION['carrito'][$id]['cantidad'] += $cantidad;
+      $_SESSION['carrito'][$id]['total'] = $_SESSION['carrito'][$id]['precio'] * $_SESSION['carrito'][$id]['cantidad'];
     } else {
-      $this->productos[$id] = [
+      $_SESSION['carrito'][$id] = [
         'id' => $id,
         'nombre' => $nombre,
         'precio' => $precio,
@@ -32,28 +21,18 @@ class Carrito
       ];
     }
 
-    // Actualizar la sesión manualmente para evitar problemas con índices
-    $_SESSION['carrito'][$id] = $this->productos[$id];
-
-    // Actualizar la propiedad productos con el contenido de la sesión
-    $this->productos = $_SESSION['carrito'];
-
-    // $this->calcularTotal();
-
     return ['respuesta' => 'ok'];
   }
 
   public function mostrarProductos()
   {
-    return $this->$_SESSION['carrito'];
+    return $_SESSION['carrito'];
   }
 
   public function eliminarProducto($id)
   {
-    if (isset($this->productos[$id])) {
-      unset($this->productos[$id]);
-      $_SESSION['carrito'] = $this->productos;
-      $this->calcularTotal();
+    if (isset($_SESSION['carrito'][$id])) {
+      unset($_SESSION['carrito'][$id]);
       return ['respuesta' => 'ok'];
     }
     return ['respuesta' => 'error', 'mensaje' => 'Producto no encontrado'];
@@ -61,34 +40,43 @@ class Carrito
 
   public function calcularTotal()
   {
-    $this->suma_total = 0;
-    $this->cantidad_productos_en_el_carro = 0;
+    $suma_total = 0;
+    $cantidad_productos = 0;
 
-    foreach ($this->productos as $producto) {
+    foreach ($_SESSION['carrito'] as $producto) {
       if (isset($producto['total'], $producto['cantidad'])) {
-        $this->suma_total += $producto['total'];
-        $this->cantidad_productos_en_el_carro += $producto['cantidad'];
+        $suma_total += $producto['total'];
+        $cantidad_productos += $producto['cantidad'];
       }
     }
 
-    // return
+    return ['total' => $suma_total, 'cantidad' => $cantidad_productos];
   }
 
   public function obtenerCantidadProductos()
   {
-    return $this->cantidad_productos_en_el_carro;
+    $cantidad_productos = 0;
+    foreach ($_SESSION['carrito'] as $producto) {
+      if (isset($producto['cantidad'])) {
+        $cantidad_productos += $producto['cantidad'];
+      }
+    }
+    return $cantidad_productos;
   }
 
   public function obtenerTotal()
   {
-    return $this->suma_total;
+    $suma_total = 0;
+    foreach ($_SESSION['carrito'] as $producto) {
+      if (isset($producto['total'])) {
+        $suma_total += $producto['total'];
+      }
+    }
+    return $suma_total;
   }
 
   public function vaciarCarrito()
   {
-    $this->productos = [];
-    $this->suma_total = 0;
-    $this->cantidad_productos_en_el_carro = 0;
     $_SESSION['carrito'] = [];
   }
 }
