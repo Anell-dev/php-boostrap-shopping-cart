@@ -1,5 +1,4 @@
 <?php
-// session_start();
 if (!isset($_SESSION['carrito'])) {
   $_SESSION['carrito'] = [];
 }
@@ -24,11 +23,6 @@ class Carrito
     return ['respuesta' => 'ok'];
   }
 
-  public function mostrarProductos()
-  {
-    return $_SESSION['carrito'];
-  }
-
   public function eliminarProducto($id)
   {
     if (isset($_SESSION['carrito'][$id])) {
@@ -36,6 +30,26 @@ class Carrito
       return ['respuesta' => 'ok'];
     }
     return ['respuesta' => 'error', 'mensaje' => 'Producto no encontrado'];
+  }
+
+  public function actualizarCantidadProducto($id, $nuevaCantidad)
+  {
+    if (isset($_SESSION['carrito'][$id])) {
+      $_SESSION['carrito'][$id]['cantidad'] = $nuevaCantidad;
+      $_SESSION['carrito'][$id]['total'] = $_SESSION['carrito'][$id]['precio'] * $_SESSION['carrito'][$id]['cantidad'];
+
+      if ($_SESSION['carrito'][$id]['cantidad'] == 0) {
+        $this->eliminarProducto($id);
+      }
+
+      return ['respuesta' => 'ok'];
+    }
+    return ['respuesta' => 'error', 'mensaje' => 'Producto no encontrado'];
+  }
+
+  public function mostrarProductos()
+  {
+    return $_SESSION['carrito'];
   }
 
   public function calcularTotal()

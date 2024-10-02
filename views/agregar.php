@@ -21,7 +21,7 @@ if (isset($_POST["name"]) && isset($_POST["price"]) && isset($_POST["stock"])) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>E-Commerce | Add Product</title>

@@ -53,6 +53,15 @@ class Product
                     $product->name = $name;
                     $product->price = $price;
                     $product->stock = $stock;
+
+                    $_SESSION['carrito'][$id] = [
+                        'id' => $id,
+                        'nombre' => $name,
+                        'precio' => $price,
+                        'cantidad' => $_SESSION['carrito'][$id]['cantidad'],
+                        'total' => $price * $_SESSION['carrito'][$id]['cantidad']
+                    ];
+
                     return true;
                 }
             }
@@ -76,13 +85,14 @@ class Product
         }
         return false;
     }
-    public static function searchProducts($query) {
+    public static function searchProducts($query)
+    {
         // if (session_status() == PHP_SESSION_NONE) {
         //     session_start();
         // }
         $allProducts = isset($_SESSION['products']) ? $_SESSION['products'] : [];
         // Filtro de búsqueda (ignora mayúsculas/minúsculas)
-        return array_filter($allProducts, function($product) use ($query) {
+        return array_filter($allProducts, function ($product) use ($query) {
             return stripos($product->getName(), $query) !== false;
         });
     }

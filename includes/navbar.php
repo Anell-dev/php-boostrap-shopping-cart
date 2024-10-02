@@ -1,4 +1,9 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $cantidad_productos = 0;
 if (!empty($_SESSION["carrito"])) {
 
@@ -8,9 +13,10 @@ if (!empty($_SESSION["carrito"])) {
         }
     }
 } else {
-    $cantidad_productos = 0; 
+    $cantidad_productos = 0;
 }
 ?>
+
 <nav class="container__principal-nav">
     <p class="container__logotipe">
         NEXLINE
@@ -42,9 +48,11 @@ if (!empty($_SESSION["carrito"])) {
 
         <div class="cart-container">
             <button class="cart-button">
-                <i class="bi bi-cart"></i>
+                <a href="/php-boostrap-shopping-cart/views/storecar.php" data-section="store-card">
+                    <i class="bi bi-cart"></i>
+                </a>
                 <span class="cart-count">
-                <?php echo  $cantidad_productos?>
+                    <?php echo  $cantidad_productos ?>
                 </span>
             </button>
         </div>

@@ -19,3 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+
+var message = document.getElementById('message');
+if (message) {
+    setTimeout(function () {
+        message.classList.add('show');
+    }, 100);
+
+    setTimeout(function () {
+        message.classList.remove('show');
+    }, 2000);
+}

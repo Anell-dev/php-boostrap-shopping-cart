@@ -1,14 +1,11 @@
-<?php 
+<?php
 
 require("../classes/Product.php");
-session_start(); 
+session_start();
 
-$products = Product::getAllProducts(); 
+$products = Product::getAllProducts();
 
-?>
-
-<?php
-// Actualizar 
+// Actualizar
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -26,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = Product::updateProducts($productId, $name, $price, $stock);
 
         if ($success) {
-            header('Location: product.php'); // Cambia esto a la página donde quieres redirigir
+            header('Location: product.php');
             exit();
         } else {
             echo "Error al actualizar el producto.";
@@ -35,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Índice de producto no válido.";
     }
 }
- ?>
+?>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>E-Commerce | Shopping</title>
@@ -52,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php require("../header.php"); ?>
     <?php require("../includes/navbar.php"); ?>
-    <h1 class="text-center mt-4" style="#2d0d3b">E-Commerce | Shopping Store</h1>
-    <div class="container mt-4" style="background:  #FAFAFA;" >
-        <div class="row" style="background:  #FAFAFA;">
+    <h1 class="text-center mt-4">E-Commerce | Shopping Store</h1>
+    <div class="container mt-4" style="background: #FAFAFA;  height: 60%; align-content: center;">
+        <div class="row" style="background: #FAFAFA;">
             <?php if (count($products) > 0): ?>
                 <?php foreach (array_keys($products) as $index): ?>
                     <?php $product = $products[$index]; ?>
@@ -63,14 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img src="../assets/img/Sale.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($product->getName()); ?></h5>
-                                <p class="card-text">Precio: $<?php echo htmlspecialchars($product->getPrice()); ?></p>
-                                <p class="card-text">Stock: <?php echo htmlspecialchars($product->getStock()); ?> unidades</p>
+                                <p class="card-text">Price: $<?php echo htmlspecialchars($product->getPrice()); ?></p>
+                                <p class="card-text">Stock: <?php echo htmlspecialchars($product->getStock()); ?> units</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <!-- Botón para agregar al carrito -->
                                     <form action="agregar_al_carrito.php" method="POST" class="me-2">
                                         <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="bi bi-cart-plus"></i> Carrito
+                                            <i class="bi bi-cart-plus"></i> Cart
                                         </button>
                                     </form>
 
@@ -92,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 </div>
                                                 <div class="modal-body">
                                                     <form id="editProductForm" method="POST" action="">
-                                                        <input type="hidden" name="productIndex" id="productIndex"> 
+                                                        <input type="hidden" name="productIndex" id="productIndex">
                                                         <div class="mb-3">
                                                             <label for="productName" class="form-label">Nombre del Producto</label>
                                                             <input type="text" class="form-control" id="productName" name="name" required>
@@ -126,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-12">
-                    <p class="text-center">No products available</p>
+                    <h4 class="text-center">No products available</h4>
                 </div>
             <?php endif; ?>
         </div>
