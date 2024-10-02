@@ -1,13 +1,30 @@
 <?php
 session_start();
-
 require('../classes/Carrito.php');
 
 $carrito = new Carrito();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $productoId = $_POST['producto_id'];
+
+    if (isset($_POST['accion']) && $_POST['accion'] === 'eliminar') {
+        if ($carrito->eliminarProducto($productoId)['respuesta'] == 'ok') {
+            header('location:storecar.php?msg=Se ha eliminado el producto!');
+        }
+    }
+
+    if (isset($_POST['accion']) && $_POST['accion'] === 'actualizar') {
+        $nuevaCantidad = intval($_POST['nueva_cantidad']);
+        if ($carrito->actualizarCantidadProducto($productoId, $nuevaCantidad)['respuesta'] == 'ok') {
+            header('location:storecar.php?msg=Actualizacion de cantidad con exito!');
+        }
+    }
+}
 ?>
 
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>Cart</title>
@@ -29,6 +46,11 @@ $carrito = new Carrito();
 
     <div class="container-shopping-cart">
         <div class="shopping-cart">
+            <?php
+            if (isset($_GET['msg'])) {
+                echo "<p id='message'>" . $_GET['msg'] . "</p>";
+            }
+            ?>
             <h2>Shopping Cart</h2>
             <table>
                 <thead>
@@ -57,9 +79,19 @@ $carrito = new Carrito();
                                 </div>
                             </td>
                             <td class="quantity">
-                                <input type="number" value="<?php echo $producto['cantidad'] ?>" min="1">
+                                <form method="POST" action="">
+                                    <input type="number" name="nueva_cantidad" value="<?php echo $producto['cantidad'] ?>" min="0" onchange="this.form.submit()">
+                                    <input type="hidden" name="accion" value="actualizar">
+                                    <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                                </form>
                                 <br>
-                                <a class="remove-link">Remove</a>
+                                <form method="POST" action="">
+                                    <input type="hidden" name="accion" value="eliminar">
+                                    <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                                    <button type="submit" class="remove-link">
+                                        Remove
+                                    </button>
+                                </form>
                             </td>
                             <td>£<?php echo $producto['precio'] ?></td>
                             <td class="total-price">£<?php echo $producto['total'] ?></td>
