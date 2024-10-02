@@ -1,10 +1,3 @@
-<?php 
-  if (!isset($_SESSION["carrito"])) {
-    # code...
-    $_SESSION["carrito"] =[];
-  }
-
-?>
 <!doctype html>
 <html lang="es">
 
@@ -17,14 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/navbar.css">
-
-  <!-- Animated css -->
-  <!-- <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
-
   <title>E-Commerce | Shopping Store</title>
-
 </head>
 
 <body>
@@ -44,11 +30,10 @@
   <div class="hero">
     <div class="hero-img">
       <img src="assets/img/dasboard.png" alt="imagen" srcset="">
-
     </div>
     <!-- Contenido a la derecha -->
     <div class="hero-content">
-      <h2>Este proyecto fue hecho por los desarroladores <br> <a href="https://github.com/brayanalmengor04">Brayan Almengor</a> & <a href="https://github.com/Anell-dev">Edwin Gonzalez</a></h2>
+      <h2>This project was made by the developers <br> <a href="https://github.com/brayanalmengor04">Brayan Almengor</a> & <a href="https://github.com/Anell-dev">Edwin Gonzalez</a></h2>
       <div class="container-button">
         <a href="/php-boostrap-shopping-cart/views/agregar.php" data-section="add-product" class="animate__animated animate__rubberBand animate__delay-1s">Start now!</a>
       </div>
