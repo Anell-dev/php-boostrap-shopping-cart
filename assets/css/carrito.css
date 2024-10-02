@@ -61,8 +61,11 @@ td {
 
 .remove-link {
   color: red;
-  text-decoration: none;
+  background: none;
+  border: none;
+  text-decoration: underline;
   cursor: pointer;
+  padding: 0;
 }
 
 .edit-link,
